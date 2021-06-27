@@ -27,8 +27,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "lancamento", schema = "wordextractor")
 @Builder
 @Data
-//@NoArgsConstructor
-//@AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Lancamento {
 
 	@Id
@@ -47,7 +47,7 @@ public class Lancamento {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
-	private TUsuario usuario;
+	private Usuario usuario;
 	
 	@Column(name = "valor")
 	private BigDecimal valor;

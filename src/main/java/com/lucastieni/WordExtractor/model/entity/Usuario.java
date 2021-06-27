@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 @Table (name = "usuario", schema = "wordextractor")
 @Builder
 @Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-public class TUsuario {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Usuario {
 	
 	@Id
 	@Column(name = "id")

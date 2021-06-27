@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.lucastieni.WordExtractor.exception.ErroAutenticacao;
 import com.lucastieni.WordExtractor.exception.RegraNegocioException;
-import com.lucastieni.WordExtractor.model.entity.TUsuario;
+import com.lucastieni.WordExtractor.model.entity.Usuario;
 import com.lucastieni.WordExtractor.model.repository.TUsuarioRepository;
 import com.lucastieni.WordExtractor.service.impl.TUsuarioServiceImpl;
 
@@ -32,16 +32,16 @@ public class TUsuarioServiceTest {
 	public void deveSalvarUmUsuario() {
 		//cenario
 		Mockito.doNothing().when(service).validarEmail(Mockito.anyString());
-		TUsuario usuario = TUsuario.builder()
+		Usuario usuario = Usuario.builder()
 				.id(1l)
 				.Name("nome")
 				.email("usuario@gmail.com")
 				.password("123").build();
 		
-		Mockito.when(repository.save(Mockito.any(TUsuario.class))).thenReturn(usuario);
+		Mockito.when(repository.save(Mockito.any(Usuario.class))).thenReturn(usuario);
 		
 		//acao
-		TUsuario usuarioSalvo = service.salvaUsuario(new TUsuario());
+		Usuario usuarioSalvo = service.salvaUsuario(new Usuario());
 		
 		//verificacao
 		Assertions.assertThat(usuarioSalvo).isNotNull();
@@ -55,7 +55,7 @@ public class TUsuarioServiceTest {
 	public void naoDeveSalvarUmUsuarioJaCadastrado() {
 		//cenario 
 		String email = "usuario@gmail.com";
-		TUsuario usuario = TUsuario.builder().email(email).build();
+		Usuario usuario = Usuario.builder().email(email).build();
 		Mockito.doThrow(RegraNegocioException.class).when(service).validarEmail(email);	
 		
 		//acao
@@ -71,11 +71,11 @@ public class TUsuarioServiceTest {
 		String email = "usuario@gmail.com";
 		String password = "senha";
 		
-		TUsuario usuario = TUsuario.builder().email(email).password(password).id(1l).build();
+		Usuario usuario = Usuario.builder().email(email).password(password).id(1l).build();
 		Mockito.when( repository.findByEmail(email)).thenReturn(Optional.of(usuario));
 		
 		//acao
-		TUsuario result = service.autenticar(email, password);
+		Usuario result = service.autenticar(email, password);
 		
 		//verificao
 		Assertions.assertThat(result).isNotNull();
@@ -86,7 +86,7 @@ public class TUsuarioServiceTest {
 	public void deveLancarErroQuandoSenhaNaoBater(){
 		//cenario
 		String senha = "123";
-		TUsuario usuario = TUsuario.builder().email("usuario@gmail.com").password(senha).build();
+		Usuario usuario = Usuario.builder().email("usuario@gmail.com").password(senha).build();
 		Mockito.when(repository.findByEmail(Mockito.anyString())).thenReturn(Optional.of(usuario));
 		
 		//acao

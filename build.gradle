@@ -18,6 +18,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	
+	implementation 'org.springframework.boot:spring-boot-devtools'
+	
 	testImplementation group: 'junit', name: 'junit'
 	
 	implementation 'org.postgresql:postgresql'
@@ -29,6 +31,8 @@ dependencies {
 	
 	testCompileOnly 'org.projectlombok:lombok:1.18.20'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+	
+	
 }
 
 test {

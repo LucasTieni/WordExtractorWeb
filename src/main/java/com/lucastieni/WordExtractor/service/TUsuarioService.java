@@ -1,13 +1,16 @@
 package com.lucastieni.WordExtractor.service;
 
-import com.lucastieni.WordExtractor.model.entity.TUsuario;
+import java.util.Optional;
+
+import com.lucastieni.WordExtractor.model.entity.Usuario;
 
 public interface TUsuarioService {
 	
-	TUsuario autenticar(String email, String senha);
+	Usuario autenticar(String email, String senha);
 	
-	TUsuario salvaUsuario(TUsuario usuario);
+	Usuario salvaUsuario(Usuario usuario);
 	
 	void validarEmail(String email);
 	
+	Optional<Usuario> obterPorId(Long id);
 }

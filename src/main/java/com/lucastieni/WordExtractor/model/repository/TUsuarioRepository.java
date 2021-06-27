@@ -5,11 +5,11 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.lucastieni.WordExtractor.model.entity.TUsuario;
+import com.lucastieni.WordExtractor.model.entity.Usuario;
 
-public interface TUsuarioRepository extends JpaRepository<TUsuario, Long>{
+public interface TUsuarioRepository extends JpaRepository<Usuario, Long>{
 
 	boolean existsByEmail(String email);
 	
-	Optional<TUsuario> findByEmail(String email);
+	Optional<Usuario> findByEmail(String email);
 }

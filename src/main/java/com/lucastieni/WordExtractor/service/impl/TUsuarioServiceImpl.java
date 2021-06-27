@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lucastieni.WordExtractor.exception.ErroAutenticacao;
 import com.lucastieni.WordExtractor.exception.RegraNegocioException;
-import com.lucastieni.WordExtractor.model.entity.TUsuario;
+import com.lucastieni.WordExtractor.model.entity.Usuario;
 import com.lucastieni.WordExtractor.model.repository.TUsuarioRepository;
 import com.lucastieni.WordExtractor.service.TUsuarioService;
 
@@ -24,8 +24,8 @@ public class TUsuarioServiceImpl implements TUsuarioService {
 	}
 
 	@Override
-	public TUsuario autenticar(String email, String password) {
-		Optional<TUsuario> usuario = repository.findByEmail(email);
+	public Usuario autenticar(String email, String password) {
+		Optional<Usuario> usuario = repository.findByEmail(email);
 		
 		if (!usuario.isPresent()) {
 			throw new ErroAutenticacao("Usuário não encontrado");
@@ -40,7 +40,7 @@ public class TUsuarioServiceImpl implements TUsuarioService {
 
 	@Override
 	@Transactional
-	public TUsuario salvaUsuario(TUsuario usuario) {
+	public Usuario salvaUsuario(Usuario usuario) {
 		validarEmail(usuario.getEmail());
 		return repository.save(usuario);
 	}
@@ -52,6 +52,11 @@ public class TUsuarioServiceImpl implements TUsuarioService {
 			throw new RegraNegocioException("Já existe um usuário cadastrado com esse email!");
 		}
 		
+	}
+
+	@Override
+	public Optional<Usuario> obterPorId(Long id) {
+		return repository.findById(id);
 	}
 
 }

@@ -13,7 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.lucastieni.WordExtractor.model.entity.TUsuario;
+import com.lucastieni.WordExtractor.model.entity.Usuario;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
@@ -30,7 +30,7 @@ public class TUsuarioRepositoryTest {
 	@Test
 	public void deveVerificarAExistenciaDeUmEmail() {
 		//cenário
-		TUsuario usuario = TUsuario.builder().Name("usuario").email("usuario@gmail.com").build();
+		Usuario usuario = Usuario.builder().Name("usuario").email("usuario@gmail.com").build();
 		entityManager.persist(usuario);
 		
 		//ação/ execução
@@ -55,10 +55,10 @@ public class TUsuarioRepositoryTest {
 	@Test
 	public void devePersistirUmUsuarioNaBaseDeDados() {
 		//cenario
-		TUsuario usuario = criarUsuario();
+		Usuario usuario = criarUsuario();
 		
 		//acao
-		TUsuario usuarioSalvo = repository.save(usuario);
+		Usuario usuarioSalvo = repository.save(usuario);
 		
 		//verificacao
 		Assertions.assertThat(usuarioSalvo.getId()).isNotNull();
@@ -67,11 +67,11 @@ public class TUsuarioRepositoryTest {
 	@Test
 	public void deveBuscarUmUsuarioPorEmail() {
 		//cenario
-		TUsuario usuario = criarUsuario();
+		Usuario usuario = criarUsuario();
 		entityManager.persist(usuario);
 		
 		//verificao
-		Optional<TUsuario> result = repository.findByEmail("usuario@gmail.com");
+		Optional<Usuario> result = repository.findByEmail("usuario@gmail.com");
 		
 		Assertions.assertThat(result.isPresent()).isTrue();
 	}
@@ -81,14 +81,14 @@ public class TUsuarioRepositoryTest {
 		//cenario
 		
 		//verificao
-		Optional<TUsuario> result = repository.findByEmail("usuario@gmail.com");
+		Optional<Usuario> result = repository.findByEmail("usuario@gmail.com");
 		
 		Assertions.assertThat(result.isPresent()).isFalse();
 	}
 	
 	
-	public static TUsuario criarUsuario() {
-		return TUsuario.builder()
+	public static Usuario criarUsuario() {
+		return Usuario.builder()
 						.Name("usuario")
 						.email("usuario@gmail.com")
 						.password("123")
