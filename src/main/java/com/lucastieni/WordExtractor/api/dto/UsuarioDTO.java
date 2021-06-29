@@ -10,7 +10,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TUsuarioDTO {
+public class UsuarioDTO {
 	private String email;
 	private String name;
 	private String password;

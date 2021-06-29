@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lucastieni.WordExtractor.api.dto.TUsuarioDTO;
+import com.lucastieni.WordExtractor.api.dto.UsuarioDTO;
 import com.lucastieni.WordExtractor.exception.ErroAutenticacao;
 import com.lucastieni.WordExtractor.exception.RegraNegocioException;
 import com.lucastieni.WordExtractor.model.entity.Usuario;
@@ -30,7 +30,7 @@ public class TUsuarioResource {
 	private final LancamentoService lancamentoService;
 	
 	@PostMapping("/autenticar")
-	public ResponseEntity autenticar ( @RequestBody TUsuarioDTO dto) {
+	public ResponseEntity autenticar ( @RequestBody UsuarioDTO dto) {
 		try {
 			Usuario usuarioAutenticado = service.autenticar( dto.getEmail(), dto.getPassword());
 			return ResponseEntity.ok(usuarioAutenticado);
@@ -40,7 +40,7 @@ public class TUsuarioResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity salvar( @RequestBody TUsuarioDTO dto ) {
+	public ResponseEntity salvar( @RequestBody UsuarioDTO dto ) {
 		
 		Usuario usuario = Usuario.builder()
 				.Name(dto.getName())
